@@ -33,8 +33,8 @@ public class Escritorio{
         return colaboradores;
     }
 
-    public void setColaborador(Colaborador colaboradores) {
-        this.colaboradores.add(colaboradores);
+    public void setColaboradores(List<Colaborador> colaboradores) {
+        this.colaboradores = colaboradores;
     }
 
     public String getEndereco() {

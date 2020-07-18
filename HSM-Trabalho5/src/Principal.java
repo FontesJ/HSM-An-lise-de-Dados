@@ -1,9 +1,16 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Principal {
 
     public static void main(String[] args){
-        double x,y;
+        List<Colaborador> colaboradores1 = new ArrayList<>();
+        List<Colaborador> colaboradores2 = new ArrayList<>();
+        List<Colaborador> colaboradores3 = new ArrayList<>();
+        List<Socio> socios1 = new ArrayList<>();
+        List<Socio> socios2 = new ArrayList<>();
+        List<Filial> filiais1 = new ArrayList<>();
+        List<Filial> filiais2 = new ArrayList<>();
 
         Empresa empresa1 = new Empresa("Exemplo SA");
         Empresa empresa2 = new Empresa("Exemplo 2.0 LTDA");
@@ -26,62 +33,71 @@ public class Principal {
         c6.setSalario(5300.00);
 
         Filial filial1 = new Filial("Filial SP", 002, c1);
-        filial1.setColaborador(c3);
-        Filial filial2 = new Filial("Filial MG", 003, c4);
-        Filial filial3 = new Filial("Filial RJ", 004, c6);
+        colaboradores1.add(c3);
+        filial1.setColaboradores(colaboradores1);
+        Filial filial2 = new Filial("Filial RJ", 004, c6);
+        colaboradores2.add(c4);
+        filial2.setColaboradores(colaboradores2);
 
-        Filial filial4 = new Filial("Filial PE", 2, c2);
-        Filial filial5 = new Filial("Filial AM", 3, c5);
+        Filial filial3 = new Filial("Filial PE", 2, c2);
+        colaboradores3.add(c4);
+        filial3.setColaboradores(colaboradores3);
 
         Sede sede1 = new Sede("Brasil", 001);
         Sede sede2 = new Sede("Brasil", 1);
 
-        empresa1.setSocio(s1);
-        empresa1.setSocio(s3);
+        socios1.add(s1);
+        socios1.add(s3);
+        empresa1.setSocios(socios1);
         empresa1.setSede(sede1);
-        empresa1.setFilial(filial1);
-        empresa1.setFilial(filial2);
-        empresa1.setFilial(filial3);
+        filiais1.add(filial1);
+        filiais1.add(filial2);
+        empresa1.setFiliais(filiais1);
 
-        empresa2.setSocio(s2);
+        socios2.add(s2);
+        empresa2.setSocios(socios2);
         empresa2.setSede(sede2);
-        empresa2.setFilial(filial4);
-        empresa2.setFilial(filial5);
+        filiais2.add(filial3);
+        empresa2.setFiliais(filiais2);
 
-        List<Empresa> empresas = null;
+        List<Empresa> empresas = new ArrayList<>();
         empresas.add(empresa1);
         empresas.add(empresa2);
 
-        x = Empresa.faturamentoAnual(empresa1);
-        System.out.println("Faturamento anual na "+ empresa1.getNome() +": " + x);
+        double faturamento_anual_1 = Empresa.faturamentoAnual(empresa1);
+        System.out.println("Faturamento anual na "+ empresa1.getNome() +": " + faturamento_anual_1);
 
-        String z = Empresa.filialMaiorFaturamento(empresa1);
-        System.out.println("filial com maior faturamento na "+ empresa1.getNome() +": " + z);
+        String filial_maior_faturamento = Empresa.filialMaiorFaturamento(empresa1);
+        System.out.println("filial com maior faturamento na "+ empresa1.getNome() +
+                            ": " + filial_maior_faturamento);
 
-        z = Empresa.filialMenorFaturamento(empresa1);
-        System.out.println("filial com menor faturamento na "+ empresa1.getNome() +": " + z);
+        String filial_menor_faturamento = Empresa.filialMenorFaturamento(filiais1);
+        System.out.println("filial com menor faturamento na "+ empresa1.getNome() +
+                            ": " + filial_menor_faturamento);
 
-        x = Empresa.mediaSalarial(empresa1);
-        System.out.println("Média salarial na "+ empresa1.getNome() +": " + x);
+        double media_salarial= Empresa.mediaSalarial(filiais1);
+        System.out.println("Média salarial na "+ empresa1.getNome() +": " + media_salarial);
 
-        x = Empresa.balancoAnual(empresa1);
-        System.out.println("Balanço anual na "+ empresa1.getNome() +": " + x);
+        double balanco_anual = Empresa.balancoAnual(empresa1);
+        System.out.println("Balanço anual na "+ empresa1.getNome() +": " + balanco_anual);
 
 
-        x = Empresa.faturamentoAnual(empresa2);
-        System.out.println("Faturamento anual na "+ empresa2.getNome() +": " + x);
+        double faturamento_anual_2 = Empresa.faturamentoAnual(empresa2);
+        System.out.println("Faturamento anual na "+ empresa2.getNome() +": " + faturamento_anual_2);
 
-        z = Empresa.filialMaiorFaturamento(empresa2);
-        System.out.println("filial com maior faturamento na "+ empresa2.getNome() +": " + z);
+        String filial_maior_faturamento2 = Empresa.filialMaiorFaturamento(empresa2);
+        System.out.println("filial com maior faturamento na "+ empresa2.getNome() +
+                            ": " + filial_maior_faturamento2);
 
-        z = Empresa.filialMenorFaturamento(empresa2);
-        System.out.println("filial com menor faturamento na "+ empresa2.getNome() +": " + z);
+        String filial_menor_faturamento2 = Empresa.filialMenorFaturamento(filiais2);
+        System.out.println("filial com menor faturamento na "+ empresa2.getNome() +
+                            ": " + filial_menor_faturamento2);
 
-        x = Empresa.mediaSalarial(empresa2);
-        System.out.println("Média salarial na "+ empresa2.getNome() +": " + x);
+        double media_salarial2 = Empresa.mediaSalarial(filiais2);
+        System.out.println("Média salarial na "+ empresa2.getNome() +": " + media_salarial2);
 
-        x = Empresa.balancoAnual(empresa2);
-        System.out.println("Balanço anual na "+ empresa2.getNome() +": " + x);
+        double balanco_anual2 = Empresa.balancoAnual(empresa2);
+        System.out.println("Balanço anual na "+ empresa2.getNome() +": " + balanco_anual2);
 
     }
 }

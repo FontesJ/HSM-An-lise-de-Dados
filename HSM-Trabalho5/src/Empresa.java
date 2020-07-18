@@ -49,12 +49,14 @@ public class Empresa {
          }
     }
 
-    public static String filialMenorFaturamento(Empresa empresa){
+    public static String filialMenorFaturamento(List<Filial> filiais){
         String filial_menor_faturamento = null, filial_atual;
         double menor_faturamento = 0, faturamento_atual;
-        for(int i=0; i<empresa.getFiliais().size(); i++){
-            faturamento_atual = empresa.getFiliais().get(i).getFaturamento_mensal();
-            filial_atual = empresa.getFiliais().get(i).getNome();
+
+        for(int i=0; i<filiais.size(); i++){
+            faturamento_atual = filiais.get(i).getFaturamento_mensal();
+            filial_atual = filiais.get(i).getNome();
+
             if(faturamento_atual < menor_faturamento){
                 menor_faturamento = faturamento_atual;
                 filial_menor_faturamento = filial_atual;
@@ -63,19 +65,27 @@ public class Empresa {
         return filial_menor_faturamento;
     }
 
-    public static double mediaSalarial(Empresa empresa){
+    public static double mediaSalarial(List<Filial> filiais){
         double salarios_filial = 0, salario_empresa = 0;
-        int filiais = empresa.getFiliais().size(), quantidade_funcionarios = 0;
-        for(int i=0; i<filiais; i++){
-            Filial filial =  empresa.getFiliais().get(i);
-            int funcionarios = filial.getColaboradores().size();
-            quantidade_funcionarios += funcionarios;
+        int quantidade_funcionarios = 0;
 
-            for(int j=0; j<funcionarios;j++) {
-                salarios_filial += filial.getColaboradores().get(j).getSalario();
+        for(int i=0; i<filiais.size(); i++){
+            Filial filial_atual = filiais.get(i);
+            List<Colaborador> colaboradores = filial_atual.getColaboradores();
+            try {
+                quantidade_funcionarios += colaboradores.size();
+            }catch(NullPointerException npe){
+                System.out.println("Nenhum funcionário cadastrtadana filial " +
+                                    filial_atual.getNome());
             }
-        salario_empresa += salarios_filial;
+
+            for(int j=0; j<colaboradores.size(); j++){
+                Colaborador colaborador = colaboradores.get(j);
+                salarios_filial += colaborador.getSalario();
+            }
+            salario_empresa += salarios_filial;
         }
+
         return salario_empresa/quantidade_funcionarios;
     }
 
@@ -147,16 +157,16 @@ public class Empresa {
         return socios;
     }
 
-    public void setSocio(Socio socio) {
-        socios.add(socio);
+    public void setSocios(List<Socio> socios) {
+        this.socios = socios;
     }
 
     public List<Filial> getFiliais() {
         return filiais;
     }
 
-    public void setFilial(Filial filial) {
-        this.filiais.add(filial);
+    public void setFiliais(List<Filial> filiais) {
+        this.filiais = filiais;
     }
 
     public Sede getSede() {
