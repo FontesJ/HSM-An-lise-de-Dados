@@ -18,7 +18,7 @@ public class MediaSemestral {
             lista[i] = Float.parseFloat(JOptionPane.showInputDialog(
                     "Digite a nota da lista do "+ (i+1) +" bimestre: "));
             contribuicao[i] = Float.parseFloat(JOptionPane.showInputDialog(
-                    "Digite a nota da contribuição do "+ (8) +" bimestre: "));
+                    "Digite a nota da contribuição do "+ (i+1) +" bimestre: "));
 
             media = ((prova[i]*0.3) + (projeto[i]*0.3) + (lista[i]*0.2) +
                     (contribuicao[i]*0.3)) + media;
