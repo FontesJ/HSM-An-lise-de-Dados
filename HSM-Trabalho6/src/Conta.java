@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.Random;
 
 public class Conta {
@@ -9,15 +8,14 @@ public class Conta {
 
     public Conta() {
         Random n = new Random();
-        this.numero_conta = n.nextInt((9999-0)+1)+0;
+        this.numero_conta = n.nextInt((9999-1000)+1)+1000;
         this.agencia = "000";
     }
 
-    public void cadastro(){
-        String nome = JOptionPane.showInputDialog(null, "Seu nome: ");
-        String cpf = JOptionPane.showInputDialog(null, "Seu CPF: ");
-        this.nome = nome;
-        this.cpf = cpf;
+    public static void imprimirDados(Conta conta){
+        System.out.println("\nNúmero da conta: " + conta.getNumero_conta()  +
+                           "\nTitular da conta: " + conta.getNome() +
+                           "\nAgencia: " + conta.getAgencia() +"\n");
     }
 
     public String getNome() {

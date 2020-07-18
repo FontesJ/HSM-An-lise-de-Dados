@@ -13,16 +13,21 @@ public class ContaCorrente extends Conta {
     }
 
     public void saque(double saque){
-        this.saldo_anterior = this.saldo;
-        this.saldo -= saque;
+        if(saque<this.saldo) {
+            this.saldo_anterior = this.saldo;
+            this.saldo -= saque;
+        }
+        else{
+            System.out.println("Valor indisponível");
+        }
     }
 
-    public void imprimirDadosCorrente(ContaCorrente conta){
-        System.out.println( "Número da conta: " + conta.getNumero_conta() +
+    public void imprimirDadosCorrente(ContaCorrente ccorrente, Conta conta){
+        System.out.println( "\nNúmero da conta: " + conta.getNumero_conta() +
                             "\nTitular da conta: " + conta.getNome() +
                             "\nAgencia: " + conta.getAgencia() +
-                            "\nSaldo: " + conta.getSaldo() +
-                            "\nSaldo Anterior: " + conta.getSaldo_anterior());
+                            "\nSaldo: " + ccorrente.getSaldo() +
+                            "\nSaldo Anterior: " + ccorrente.getSaldo_anterior() + "\n");
     }
 
     public double getSaldo() {

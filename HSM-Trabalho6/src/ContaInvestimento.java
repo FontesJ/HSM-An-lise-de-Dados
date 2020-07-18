@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.util.Random;
-
 public class ContaInvestimento extends Conta{
     private double saldo;
     private double saldo_anterior;
@@ -20,22 +17,27 @@ public class ContaInvestimento extends Conta{
     }
 
     public void saque(double saque){
-        this.saldo_anterior = this.saldo;
-        this.saldo -= saque;
-        this.saldo_especial = this.saldo*2;
+        if(saque<this.saldo_especial) {
+            this.saldo_anterior = this.saldo;
+            this.saldo -= saque;
+            this.saldo_especial = this.saldo * 2;
+        }
+        else{
+            System.out.println("Valor indisponível");
+        }
     }
 
     public void limite(ContaInvestimento conta){
         double limite = this.saldo*2;
     }
 
-    public void imprimirDadosInvestimento(ContaInvestimento conta){
+    public void imprimirDadosInvestimento(ContaInvestimento cinvestimento, Conta conta){
         System.out.println("Número da conta: " + conta.getNumero_conta() +
                            "\nTitular da conta: " + conta.getNome() +
                            "\nAgencia: " + conta.getAgencia() +
-                           "\nSaldo: " + conta.getSaldo() +
-                           "\nLimite: " + conta.getSaldo_especial() +
-                           "\nSaldo Anterior: " + conta.getSaldo_anterior());
+                           "\nSaldo: " + cinvestimento.getSaldo() +
+                           "\nLimite: " + cinvestimento.getSaldo_especial() +
+                           "\nSaldo Anterior: " + cinvestimento.getSaldo_anterior() + "\n");
     }
 
     public double getSaldo() {
