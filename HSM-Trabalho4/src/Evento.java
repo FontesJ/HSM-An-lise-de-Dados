@@ -40,7 +40,7 @@ public class Evento {
 
     public static void palestranteMaisCaro(Evento evento){
         List<Palestra> palestra = evento.getPalestras();
-        double custo_atual=0;
+        double custo_atual;
         double maior_custo=0;
         String palestrante_mais_caro = null;
 
@@ -51,14 +51,13 @@ public class Evento {
                 palestrante_mais_caro = palestra.get(i).getPalestrante().getNome();
             }
         }
-        JOptionPane.showMessageDialog(null,
-                "Palestrante mais caro: "+palestrante_mais_caro);
+        System.out.println("Palestrante mais caro: "+palestrante_mais_caro);
     }
 
     public static void palestranteMaisBarato(Evento evento){
         List<Palestra> palestra = evento.getPalestras();
-        double custo_atual=0;
-        double menor_custo=0;
+        double custo_atual;
+        double menor_custo=1000;
         String palestrante_mais_barato = null;
 
         for(int i=0; i<palestra.size(); i++) {
@@ -68,8 +67,7 @@ public class Evento {
                 palestrante_mais_barato = palestra.get(i).getPalestrante().getNome();
             }
         }
-        JOptionPane.showMessageDialog(null,
-                "Palestrante mais caro: "+palestrante_mais_barato);
+        System.out.println("Palestrante mais barato: "+palestrante_mais_barato);
     }
 
     public String getNome() {
@@ -116,7 +114,7 @@ public class Evento {
         return palestras;
     }
 
-    public void setPalestras(Palestra palestra) {
-        this.palestras.add(palestra);
+    public void setPalestras(List<Palestra> palestras) {
+        this.palestras = palestras;
     }
 }
